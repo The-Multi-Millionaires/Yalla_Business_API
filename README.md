@@ -1,7 +1,7 @@
 # Yalla_Business_API
 
-Gropu members : 
+Group members : 
 
-1. DAna Abbadi
+1. Dana Abbadi
 2. Osama Yousef
 3. Mohammed Ghafri
