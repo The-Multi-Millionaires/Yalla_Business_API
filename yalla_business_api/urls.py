@@ -23,7 +23,8 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('yalla_business_app/', include('yalla_business_app.urls')),
     path('yalla_business_app/', include('django.contrib.auth.urls')),
-    path('api/v1/stores', include('yalla_business_app.urls')),
-    path('api/v1/userprofile', include('yalla_business_app.urls')),
+    # path('api/v1/stores', include('yalla_business_app.urls')),
+    # path('api/v1/userprofile', include('yalla_business_app.urls')),
+    # path('api/v1/review', include('yalla_business_app.urls')),
 
 ]
