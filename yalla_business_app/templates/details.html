@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+{% block title %}
+DETAILS_PAGE
+{%endblock title %}
+{% block content %}
+<header>
+<h1> Hello This is DETAILS_PAGE</h1>
+</header>
+<main>
+   <div>
+   <h2>{{store.store_name}}</h2> 
+    <h3>{{store.opening_times}}</h3>
+    <p>{{store.price_range}}</p>
+   </div>
+   <div>
+
+   </div>
+</main>
+{% endblock content %}

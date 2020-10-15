@@ -1,9 +1,12 @@
 from django.urls import reverse_lazy
 from django.views.generic.edit import CreateView
+from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
+
+
 
 from .forms import CustomUserCreationForm
 
-from rest_framework.generics import ListCreateAPIView
+from rest_framework.generics import ListCreateAPIView, RetrieveUpdateAPIView
 from .models import Store, UserProfile, Review
 
 from .serializers import StoreSerializer, UserSerializer, ReviewSerializer
@@ -17,10 +20,29 @@ class StoreList(ListCreateAPIView):
     queryset = Store.objects.all()
     serializer_class = StoreSerializer
 
+class StoreDetails(RetrieveUpdateAPIView):
+    # template_name = 'details.html'
+    queryset = Store.objects.all()
+    serializer_class = StoreSerializer
+
+
+
+
 class UserList(ListCreateAPIView):
     queryset = UserProfile.objects.all()
     serializer_class = UserSerializer
 
+class ProfileDetails(RetrieveUpdateAPIView):
+    queryset = UserProfile.objects.all()
+    serializer_class = UserSerializer
+
+
+
+
 class ReviewList(ListCreateAPIView):
+    queryset = Review.objects.all()
+    serializer_class = ReviewSerializer
+
+class ReviewDetails(RetrieveUpdateAPIView):
     queryset = Review.objects.all()
     serializer_class = ReviewSerializer
