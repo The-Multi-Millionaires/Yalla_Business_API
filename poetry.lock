@@ -130,8 +130,19 @@ optional = false
 python-versions = ">=3.5"
 version = "0.4.1"
 
+[[package]]
+category = "main"
+description = "Radically simplified static file serving for WSGI applications"
+name = "whitenoise"
+optional = false
+python-versions = ">=3.5, <4"
+version = "5.2.0"
+
+[package.extras]
+brotli = ["brotli"]
+
 [metadata]
-content-hash = "90befd36a2ee03d4256415054ad8ceac64c073cfb28d27c7b67cb3ac31d9224d"
+content-hash = "7550c918ff77d2b8701157873eccc26cb99adf2eba8887e72ec0c50f7b295db2"
 lock-version = "1.0"
 python-versions = "~3.8"
 
@@ -209,4 +220,8 @@ pytz = [
 sqlparse = [
     {file = "sqlparse-0.4.1-py3-none-any.whl", hash = "sha256:017cde379adbd6a1f15a61873f43e8274179378e95ef3fede90b5aa64d304ed0"},
     {file = "sqlparse-0.4.1.tar.gz", hash = "sha256:0f91fd2e829c44362cbcfab3e9ae12e22badaa8a29ad5ff599f9ec109f0454e8"},
+]
+whitenoise = [
+    {file = "whitenoise-5.2.0-py2.py3-none-any.whl", hash = "sha256:05d00198c777028d72d8b0bbd234db605ef6d60e9410125124002518a48e515d"},
+    {file = "whitenoise-5.2.0.tar.gz", hash = "sha256:05ce0be39ad85740a78750c86a93485c40f08ad8c62a6006de0233765996e5c7"},
 ]
