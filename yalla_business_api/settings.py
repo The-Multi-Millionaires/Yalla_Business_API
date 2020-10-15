@@ -9,9 +9,15 @@ https://docs.djangoproject.com/en/3.1/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/3.1/ref/settings/
 """
-
+import os
 from pathlib import Path
+import environ
 
+env = environ.Env(
+            # DEBUG is Flase by default
+            DEBUG = (bool, False)
+            )
+environ.Env.read_env()
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -20,12 +26,15 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/3.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'g-_vs=4^no)e#bf75kcb3^^(6-9@0z)rz-xhck991!l_^shb6)'
+# SECRET_KEY = 'g-_vs=4^no)e#bf75kcb3^^(6-9@0z)rz-xhck991!l_^shb6)'
+SECRET_KEY = env.str('SECRET_KEY')
+DEBUG=env.bool('DEBUG')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+# DEBUG = True
 
-ALLOWED_HOSTS = []
+# ALLOWED_HOSTS = ['localhost','0.0.0.0','127.0.0.1',]
+ALLOWED_HOSTS = tuple(env.list('ALLOWED_HOSTS'))
 
 
 # Application definition
@@ -36,15 +45,19 @@ INSTALLED_APPS = [
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
+    'whitenoise.runserver_nostatic',
     'django.contrib.staticfiles',
     'rest_framework',
+    'corsheaders',
     'yalla_business_app.apps.YallaBusinessAppConfig',
 
 ]
 
 MIDDLEWARE = [
+    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
@@ -78,12 +91,18 @@ WSGI_APPLICATION = 'yalla_business_api.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE':'django.db.backends.postgresql',
-        'NAME':'jqblewmu',
-        'USER':'jqblewmu',
-        'PASSWORD':'upEB93o0mr9hMjjHR7OO7nfTL-ZMnRWQ',
-        'HOST':'ruby.db.elephantsql.com',
-        'PORT': 5432
+        # 'ENGINE':'django.db.backends.postgresql',
+        # 'NAME':'jqblewmu',
+        # 'USER':'jqblewmu',
+        # 'PASSWORD':'upEB93o0mr9hMjjHR7OO7nfTL-ZMnRWQ',
+        # 'HOST':'ruby.db.elephantsql.com',
+        # 'PORT': 5432
+        'ENGINE': env.str('ENGINE'),
+        'NAME': env.str('DATABASE_NAME'),
+        'USER': env.str('DATABASE_USER'),
+        'PASSWORD': env.str('DATABASE_PASSWORD'),
+        'HOST': env.str('DATABASE_HOST'),
+        'PORT': env.str('DATABASE_PORT')
     }
 }
 
@@ -124,8 +143,20 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
 
+# STATIC_URL = '/static/'
+STATIC_DIR = os.path.join(BASE_DIR, 'static')
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 STATIC_URL = '/static/'
+STATICFILES_DIRS = [
+    STATIC_DIR,
+]
+
 AUTH_USER_MODEL = 'yalla_business_app.CustomUser'
 
 LOGIN_REDIRECT_URL = 'home'
 LOGOUT_REDIRECT_URL = 'home'
+
+# CORS_ORIGIN_WHITELIST = [
+#     'http://localhost:3000',
+#     # 'https://snacksui.vercel.app/',
+# ]
