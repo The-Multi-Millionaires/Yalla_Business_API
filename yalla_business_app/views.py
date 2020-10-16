@@ -7,6 +7,7 @@ from django.views.generic import ListView, DetailView, CreateView, UpdateView, D
 from .forms import CustomUserCreationForm
 
 from rest_framework.generics import ListCreateAPIView, RetrieveUpdateAPIView ,RetrieveUpdateDestroyAPIView
+from rest_framework import filters
 
 
 from .models import Store, UserProfile, Review
@@ -19,6 +20,8 @@ class SignUpView(CreateView):
     template_name = 'registration/signup.html'
 
 class StoreList(ListCreateAPIView):
+    search_fields = ['store_name']
+    filter_backends = (filters.SearchFilter,)
     queryset = Store.objects.all()
     serializer_class = StoreSerializer
 
