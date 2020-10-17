@@ -25,6 +25,9 @@ class StoreList(ListCreateAPIView):
     queryset = Store.objects.all()
     serializer_class = StoreSerializer
 
+    # def get_queryset(self):
+    #     return Review.objects.filter(user=self.kwargs['store_id'])
+
 class StoreDetails(RetrieveUpdateDestroyAPIView):
     # template_name = 'details.html'
     queryset = Store.objects.all()
@@ -45,6 +48,8 @@ class ProfileDetails(RetrieveUpdateDestroyAPIView):
 
 
 class ReviewList(ListCreateAPIView):
+    search_fields = ['store_id']
+    filter_backends = (filters.SearchFilter,)
     queryset = Review.objects.all()
     serializer_class = ReviewSerializer
 

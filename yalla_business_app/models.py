@@ -37,7 +37,7 @@ class Store(models.Model):
 
 class Review(models.Model):
     user_id = models.ForeignKey(get_user_model(), on_delete=models.CASCADE)
-    store_name = models.ForeignKey(Store, on_delete=models.CASCADE)
+    store_id = models.ForeignKey(Store, on_delete=models.CASCADE)
     store_location = models.TextField()
     store_pic = models.CharField(max_length=64)
     comment = models.TextField()
