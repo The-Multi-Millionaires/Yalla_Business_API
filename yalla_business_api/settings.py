@@ -161,3 +161,7 @@ LOGOUT_REDIRECT_URL = 'home'
 #     'http://localhost:3000',
 #     # 'https://snacksui.vercel.app/',
 # ]
+CORS_ORIGIN_WHITELIST = [
+    'http://localhost:3000',
+   
+]

@@ -25,6 +25,9 @@ class StoreList(ListCreateAPIView):
     queryset = Store.objects.all()
     serializer_class = StoreSerializer
 
+    # def get_queryset(self):
+    #     return Review.objects.filter(user=self.kwargs['store_id'])
+
 class StoreDetails(RetrieveUpdateDestroyAPIView):
     # template_name = 'details.html'
     queryset = Store.objects.all()
@@ -42,12 +45,19 @@ class ProfileDetails(RetrieveUpdateDestroyAPIView):
     serializer_class = UserSerializer
 
 
+class DynamicSearchFilter(filters.SearchFilter):
+    def get_search_fields(self, view, request):
+        return request.GET.getlist('search_fields', [])
 
 
 class ReviewList(ListCreateAPIView):
+    # search_fields = ['store_id__id']
+    filter_backends = (DynamicSearchFilter,)
+    # filter_backends = (filters.SearchFilter,)
     queryset = Review.objects.all()
     serializer_class = ReviewSerializer
 
 class ReviewDetails(RetrieveUpdateDestroyAPIView):
     queryset = Review.objects.all()
     serializer_class = ReviewSerializer
+
