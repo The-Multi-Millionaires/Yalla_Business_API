@@ -17,14 +17,14 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 from django.views.generic.base import TemplateView
+from rest_framework.authtoken.views import obtain_auth_token
 
 urlpatterns = [
     path('', TemplateView.as_view(template_name='home.html'), name='home'),
     path('admin/', admin.site.urls),
     path('yalla_business_app/', include('yalla_business_app.urls')),
     path('yalla_business_app/', include('django.contrib.auth.urls')),
-    # path('api/v1/stores', include('yalla_business_app.urls')),
-    # path('api/v1/userprofile', include('yalla_business_app.urls')),
-    # path('api/v1/review', include('yalla_business_app.urls')),
+    path('auth/', obtain_auth_token),
+
 
 ]

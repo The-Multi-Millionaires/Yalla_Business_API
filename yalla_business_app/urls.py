@@ -1,5 +1,5 @@
 from django.urls import path
-from .views import SignUpView, StoreList, UserList, ReviewList, StoreDetails, ProfileDetails,ReviewDetails
+from .views import SignUpView, StoreList, UserList, ReviewList, StoreDetails, ProfileDetails,ReviewDetails, Users
 
 
 urlpatterns = [
@@ -12,5 +12,7 @@ urlpatterns = [
 
     path('api/v1/review/', ReviewList.as_view(), name='review'),
     path('api/v1/review/<int:pk>/',ReviewDetails.as_view(),name='reviewdetails'),
+
+    path('api/users', Users.as_view(), name='users'),   
 
 ]

@@ -10,9 +10,9 @@ from rest_framework.generics import ListCreateAPIView, RetrieveUpdateAPIView ,Re
 from rest_framework import filters
 
 
-from .models import Store, UserProfile, Review
+from .models import Store, UserProfile, Review, CustomUser
 
-from .serializers import StoreSerializer, UserSerializer, ReviewSerializer
+from .serializers import StoreSerializer, UserSerializer, ReviewSerializer, CostumUserSerializer
 
 class SignUpView(CreateView):
     form_class = CustomUserCreationForm
@@ -60,4 +60,10 @@ class ReviewList(ListCreateAPIView):
 class ReviewDetails(RetrieveUpdateDestroyAPIView):
     queryset = Review.objects.all()
     serializer_class = ReviewSerializer
+
+class Users(ListCreateAPIView):
+    search_fields = ['username']
+    filter_backends = (filters.SearchFilter,)
+    queryset = CustomUser.objects.all()
+    serializer_class = CostumUserSerializer
 
