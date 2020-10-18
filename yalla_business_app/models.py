@@ -31,6 +31,9 @@ class Store(models.Model):
     price_range = models.CharField(max_length=64)
     images=models.TextField()
     store_location=models.CharField(max_length=64)
+    pro_pic = models.TextField()
+    store_description = models.TextField()
+
     
     def __str__(self):
         return self.store_name
