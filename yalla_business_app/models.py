@@ -33,6 +33,10 @@ class Store(models.Model):
     store_location=models.CharField(max_length=64)
     pro_pic = models.TextField()
     store_description = models.TextField()
+    price = models.IntegerField()
+    phone_number = models.IntegerField()
+
+
 
     
     def __str__(self):
