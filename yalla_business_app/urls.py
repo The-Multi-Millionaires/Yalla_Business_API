@@ -1,5 +1,5 @@
 from django.urls import path
-from .views import SignUpView, StoreList, UserList, ReviewList, StoreDetails, ProfileDetails,ReviewDetails, Users
+from .views import SignUpView, StoreList, UserList, ReviewList, StoreDetails, ProfileDetails,ReviewDetails, Users,UsersDetails
 
 
 urlpatterns = [
@@ -14,5 +14,7 @@ urlpatterns = [
     path('api/v1/review/<int:pk>/',ReviewDetails.as_view(),name='reviewdetails'),
 
     path('api/users', Users.as_view(), name='users'),   
+    path('api/users/<int:pk>/',UsersDetails.as_view(),name='reviewdetails'),
+
 
 ]

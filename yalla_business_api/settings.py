@@ -164,5 +164,6 @@ LOGOUT_REDIRECT_URL = 'home'
 # ]
 CORS_ORIGIN_WHITELIST = [
     'http://localhost:3000',
+    'http://localhost:3005',
    
 ]
