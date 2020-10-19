@@ -35,6 +35,31 @@ class Store(models.Model):
     store_description = models.TextField()
     price = models.IntegerField()
     phone_number = models.IntegerField()
+    RESTURANT = 'Resturant'
+    CLOTHES = 'Clothes'
+    SERVICES = 'Services'
+    FASHION = 'Fashion'
+    BEAUTY = 'Beauty'
+    ENTERTAINMENT = 'Entertainment'
+    EDUCATION = 'Education'
+    ELECTRICAL = 'Electrical'
+
+    YALLA_CHOICES = [
+        (RESTURANT, 'Resturant'),
+        (CLOTHES, 'Clothes'),
+        (SERVICES, 'Services'),
+        (FASHION, 'Fashion'),
+        (BEAUTY, 'Beauty'),
+        (ENTERTAINMENT, 'Entertainment'),
+        (EDUCATION, 'Education'),
+        (ELECTRICAL, 'Electrical'),
+
+    ]
+    catagories = models.CharField(
+        max_length=20,
+        choices=YALLA_CHOICES,
+        default=EDUCATION,
+    )
 
 
 
