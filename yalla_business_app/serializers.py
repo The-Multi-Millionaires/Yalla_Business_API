@@ -21,12 +21,10 @@ class ReviewSerializer(serializers.ModelSerializer):
 class CostumUserSerializer(serializers.ModelSerializer):
     class Meta:
         model = CustomUser
-        fields = ('id','username','password')
+        fields = ('id','username','password','first_name','last_name')
         extra_kwargs = {'password': {'write_only': True, 'required':True}}
 
     def create(self, validated_data):
         user = CustomUser.objects.create_user(**validated_data)
         Token.objects.create(user=user)
         return user
-
-    
